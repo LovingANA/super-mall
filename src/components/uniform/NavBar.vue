@@ -41,6 +41,7 @@
     width: 100%;
     background-color: #F6F6F6;
     padding: 2px 0;
+    font-size: 15px;
   }
 
   .item-image {
@@ -55,12 +56,7 @@
     text-align: center;
   }
 
-  .item-image + div > span{
-    font-size: 15px;
-    color: black;
-  }
-
-  .item-image + div > span.active {
+  .active {
     color: var(--themeColor);
   }
 </style>
