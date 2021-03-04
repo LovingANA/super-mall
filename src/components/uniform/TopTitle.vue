@@ -30,11 +30,9 @@
     color: white;
   }
 
-  h2 {
-    display: inline-block;
-    margin: 0;
-    font-size: 1rem;
-    font-weight: normal;
+  h2 > span {
     line-height: 40px;
   }
+
+  
 </style>

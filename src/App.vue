@@ -26,7 +26,7 @@
             ],
             href: '/'
           },
-           {
+          {
             name: '分类',
             src: [
               // require('@/assets/images/nav-bar/category/active.png'),
@@ -34,7 +34,7 @@
             ],
             href: '/category'
           },
-           {
+          {
             name: '购物车',
             src: [
               // require('@/assets/images/nav-bar/cart/active.png'),
@@ -42,7 +42,7 @@
             ],
             href: '/cart'
           },
-           {
+          {
             name: '我的',
             src: [
               // require('@/assets/images/nav-bar/profile/active.png'),
