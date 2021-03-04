@@ -30,11 +30,12 @@
   ul {
     display: flex;
     justify-content: space-between;
-    padding: 8px 5px;
+    padding: 8px;
+    font-size: 14px;
   }
 
   img {
-    width: 80px;
+    width: 70px;
   }
 
   .recommend-name {

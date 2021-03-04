@@ -1,9 +1,9 @@
 <template>
-  <div class="carousel-image" v-if="carouselImages">
+  <div class="carousel-image" v-if="carouselImages" id="carousel-image-01">
     <ul class="images" :style="{transform: `translateX(${leftOffset}px)`}">
       <li v-for="carouselImage in carouselImages" :key="carouselImage.src">
         <a :href="carouselImage.href">
-          <img :src="carouselImage.src" :alt="carouselImage.name">
+          <img :src="carouselImage.src" :alt="carouselImage.name" :style="{width: imageWidth + 'px'}">
         </a>
       </li>
     </ul>
@@ -27,18 +27,19 @@
     data() {
       return {
         leftOffset: 0,
-        currentImage: 0
+        currentImage: 0,
+        imageWidth: 0
       }
     },
     methods: {
       translateImages() {
         const id = setInterval(() => {
-          if (this.leftOffset === -375) {
+          if (this.leftOffset === -(this.imageWidth)) {
             clearInterval(id);
             this.carouselImages.push(this.carouselImages.shift());
             this.leftOffset = 0;
           } else {
-            this.leftOffset -= 5;
+            this.leftOffset -= 3;
           }
         }, 8);
       }
@@ -51,7 +52,11 @@
           this.currentImage++;
         }
         this.translateImages();
-      }, 2000)
+      }, 4000)
+    },
+    mounted() {
+      this.imageWidth = document.getElementById('carousel-image-01').offsetWidth;
+      console.log(this.imageWidth);
     }
   }
 </script>
@@ -64,10 +69,6 @@
 
   .images {
     display: flex;
-  }
-
-  img {
-    width: 375px
   }
 
   .dots {
