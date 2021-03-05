@@ -8,7 +8,7 @@
             :alt="navBarItem.name">
         </div>
         <div>
-          <span :class="{active: $route.path === navBarItem.href}">{{navBarItem.name}}</span>
+          <span :class="{active: sliceStr($route.path) === navBarItem.href}">{{navBarItem.name}}</span>
         </div>
       </router-link>
     </li>
@@ -28,6 +28,17 @@
 
       }
     },
+    methods: {
+      sliceStr(path) {
+        const temp = path.substring(1);
+        if (temp.indexOf('/') !== -1) {
+          const realIndex = temp.indexOf('/') + 1;
+          return path.substring(0, realIndex);
+        } else {
+          return path
+        }
+      }
+    }
   }
 </script>
 

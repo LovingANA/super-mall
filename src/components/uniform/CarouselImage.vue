@@ -28,7 +28,7 @@
       return {
         leftOffset: 0,
         currentImage: 0,
-        imageWidth: 0
+        imageWidth: 0,
       }
     },
     methods: {
@@ -41,7 +41,7 @@
           } else {
             this.leftOffset -= 3;
           }
-        }, 8);
+        }, 5);
       }
     },
     created() {
@@ -56,7 +56,6 @@
     },
     mounted() {
       this.imageWidth = document.getElementById('carousel-image-01').offsetWidth;
-      console.log(this.imageWidth);
     }
   }
 </script>

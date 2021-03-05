@@ -7,8 +7,29 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'AppHome',
-    component: AppHome
+    redirect: '/home/popular'
+  },
+  {
+    path: '/home',
+    redirect: '/home/popular'
+  },
+  {
+    path: '/home',
+    component: AppHome,
+    children: [
+      {
+        path: 'popular',
+        component: () => import('@/components/project/GoodsList.vue')
+      },
+      {
+        path: 'new',
+        component: () => import('@/components/project/GoodsList.vue')
+      },
+      {
+        path: 'selection',
+        component: () => import('@/components/project/GoodsList.vue')
+      }
+    ]
   },
   {
     path: '/category',

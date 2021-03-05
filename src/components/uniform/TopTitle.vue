@@ -28,6 +28,7 @@
     background-color: var(--themeColor);
     text-align: center;
     color: white;
+    z-index: 1;
   }
 
   h2 > span {

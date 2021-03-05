@@ -24,7 +24,7 @@
               // require('@/assets/images/nav-bar/home/active.png'),
               require('@/assets/images/nav-bar/home/inactive.png')
             ],
-            href: '/'
+            href: '/home'
           },
           {
             name: '分类',
