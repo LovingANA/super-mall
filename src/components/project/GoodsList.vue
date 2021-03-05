@@ -49,6 +49,7 @@
   .image > img {
     width: 175px;
     height: 270px;
+    border-radius: 2px;
   }
 
   .name > span {

@@ -4,8 +4,10 @@
     <carousel-image :carouselImages="carouselImages"></carousel-image>
     <home-recommend :recommends="recommends"></home-recommend>
     <div class="margin-bar"></div>
+    <div id="home-tab-bar"></div>
     <tab-bar :tabBarItems="tabBarItems" @clickTabBar="setGoodsListData"></tab-bar>
     <router-view :goodsListItems="goodsListItems"></router-view>
+    <back-to-top :image="image" v-if="isShowBackToTop"></back-to-top>
   </div>
 </template>
 
@@ -14,6 +16,7 @@
   import CarouselImage from '@/components/uniform/CarouselImage.vue'
   import HomeRecommend from './HomeRecommend.vue'
   import TabBar from '@/components/uniform/TabBar.vue'
+  import BackToTop from '@/components/uniform/BackToTop.vue'
   import {getHomeData, getHomeGoodsListData} from '@/network'
 
   export default {
@@ -23,6 +26,7 @@
       CarouselImage,
       HomeRecommend,
       TabBar,
+      BackToTop
     },
     data() {
       return {
@@ -45,7 +49,12 @@
         ],
         currentGoodsListType: 'pop',
         goodsListItems: [],
-        requestedPage: 1
+        requestedPage: 1,
+        image: {
+          src: require('@/assets/images/back-to-top.png'),
+          name: '回到顶部'
+        },
+        isShowBackToTop: false
       }
     },
     methods: {
@@ -107,12 +116,20 @@
         }))
       });
       window.addEventListener('scroll', () => {
+        if (window.scrollY >= document.getElementById('home-tab-bar').offsetTop - 40) {
+          this.isShowBackToTop = true;
+        } else {
+          this.isShowBackToTop = false;
+        }
         const viewportHeight = window.innerHeight;
         const pageHeight = document.getElementById('app').offsetHeight;
         if (Math.ceil(window.scrollY) === pageHeight - viewportHeight) {
           this.loadNextPageData();
         }
-      })
+      });
+    },
+    mounted() {
+      
     }
   }
 </script>
