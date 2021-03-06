@@ -10,7 +10,7 @@
   import TopTitle from '@/components/uniform/TopTitle.vue'
 
   export default {
-    name: '',
+    name: 'AppCart',
     components: {
       TopTitle
     },

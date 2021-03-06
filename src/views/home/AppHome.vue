@@ -112,14 +112,16 @@
           name: element.title,
           price: element.price,
           starNumber: element.cfav,
-          href: element.link
+          iid: element.iid
         }))
       });
       window.addEventListener('scroll', () => {
-        if (window.scrollY >= document.getElementById('home-tab-bar').offsetTop - 40) {
+        if (document.getElementById('home-tab-bar')) {
+          if (window.scrollY >= document.getElementById('home-tab-bar').offsetTop - 40) {
           this.isShowBackToTop = true;
-        } else {
-          this.isShowBackToTop = false;
+          } else {
+            this.isShowBackToTop = false;
+          }
         }
         const viewportHeight = window.innerHeight;
         const pageHeight = document.getElementById('app').offsetHeight;
@@ -127,9 +129,6 @@
           this.loadNextPageData();
         }
       });
-    },
-    mounted() {
-      
     }
   }
 </script>

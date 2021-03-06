@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AppHome from '@/views/home/AppHome.vue'
+import AppDetatil from '@/views/detail/AppDetail.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect: '/home/popular'
+    redirect: '/home'
   },
   {
     path: '/home',
@@ -45,6 +46,10 @@ const routes = [
     path: '/profile',
     name: 'AppProfile',
     component: () => import('@/views/profile/AppProfile.vue')
+  },
+  {
+    path: '/detail',
+    component: AppDetatil
   }
 ]
 

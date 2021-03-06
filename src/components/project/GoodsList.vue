@@ -1,7 +1,7 @@
 <template>
   <ul class="goods-list">
     <li v-for="goodsListItem in goodsListItems" :key="goodsListItem.name + Math.random()">
-      <a :href="goodsListItem.href">
+      <router-link :to="{path: '/detail', query: {iid: goodsListItem.iid}}">
         <div class="image">
           <img :src="goodsListItem.src" :alt="goodsListItem.name">
         </div>
@@ -15,7 +15,7 @@
             <span>{{goodsListItem.starNumber}}</span>
           </div>
         </div>
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>

@@ -2,16 +2,13 @@
   <div class="carousel-image" v-if="carouselImages" id="carousel-image-01">
     <ul class="images" :style="{transform: `translateX(${leftOffset}px)`}">
       <li v-for="carouselImage in carouselImages" :key="carouselImage.src">
-        <a :href="carouselImage.href">
-          <img :src="carouselImage.src" :alt="carouselImage.name" :style="{width: imageWidth + 'px'}">
+        <a :href="carouselImage.href || ''">
+          <img :src="carouselImage.src" :alt="carouselImage.name" :style="{width: imageWidth + 'px', height: height}">
         </a>
       </li>
     </ul>
-    <ul class="dots">
-      <li :class="{'pink-dot': currentImage === 0}"></li>
-      <li :class="{'pink-dot': currentImage === 1}"></li>
-      <li :class="{'pink-dot': currentImage === 2}"></li>
-      <li :class="{'pink-dot': currentImage === 3}"></li>
+    <ul class="dots" :style="{width: totoalImagesNumber * 10 + 5 + 'px'}">
+      <li class="dot-item" v-for="index in totoalImagesNumber" :key="index" :class="{'pink-dot': currentImage === --index}"></li>
     </ul>
   </div>
 </template>
@@ -22,6 +19,9 @@
     props: {
       carouselImages: {
         type: Array
+      },
+      height: {
+        type: String
       }
     },
     data() {
@@ -29,6 +29,11 @@
         leftOffset: 0,
         currentImage: 0,
         imageWidth: 0,
+      }
+    },
+    computed: {
+      totoalImagesNumber() {
+        return this.carouselImages.length;
       }
     },
     methods: {
@@ -46,7 +51,7 @@
     },
     created() {
       setInterval(() => {
-        if (this.currentImage === 3) {
+        if (this.currentImage === this.totoalImagesNumber - 1) {
           this.currentImage = 0;
         } else {
           this.currentImage++;
@@ -76,7 +81,6 @@
     position: absolute;
     left: calc((100% - 40px) / 2);
     bottom: 10px;
-    width: 40px;
   }
 
   .dots > li {
@@ -85,7 +89,11 @@
     border-radius: 50%;
   }
 
-  .pink-dot {
+  li.pink-dot {
     background-color: rgb(189, 69, 69);
+  }
+
+  .dot-item {
+    background-color: rgba(255, 255, 255, .7);
   }
 </style>
