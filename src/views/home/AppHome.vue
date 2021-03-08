@@ -6,7 +6,7 @@
     <div class="margin-bar"></div>
     <div id="home-tab-bar"></div>
     <tab-bar :tabBarItems="tabBarItems" @clickTabBar="setGoodsListData"></tab-bar>
-    <router-view :goodsListItems="goodsListItems"></router-view>
+    <router-view :goodsListItems="goodsListItems" :isShowLoading="isShowLoading"></router-view>
     <back-to-top :image="image" v-if="isShowBackToTop"></back-to-top>
   </div>
 </template>
@@ -54,7 +54,8 @@
           src: require('@/assets/images/back-to-top.png'),
           name: '回到顶部'
         },
-        isShowBackToTop: false
+        isShowBackToTop: false,
+        isShowLoading: false
       }
     },
     methods: {
@@ -90,8 +91,24 @@
             starNumber: element.cfav,
             href: element.link
           }))))
+          this.isShowLoading = false;
         });
-      } 
+      },
+      processWindowScroll() {
+        if (document.getElementById('home-tab-bar')) {
+          if (window.scrollY >= document.getElementById('home-tab-bar').offsetTop - 40) {
+          this.isShowBackToTop = true;
+          } else {
+            this.isShowBackToTop = false;
+          } 
+        }
+        const viewportHeight = window.innerHeight;
+        const pageHeight = document.getElementById('app').offsetHeight;
+        if (Math.ceil(window.scrollY) === pageHeight - viewportHeight) {
+          this.isShowLoading = true;
+          this.loadNextPageData();
+        }
+      }
     },
     created() {
       getHomeData().then(res => {
@@ -115,20 +132,10 @@
           iid: element.iid
         }))
       });
-      window.addEventListener('scroll', () => {
-        if (document.getElementById('home-tab-bar')) {
-          if (window.scrollY >= document.getElementById('home-tab-bar').offsetTop - 40) {
-          this.isShowBackToTop = true;
-          } else {
-            this.isShowBackToTop = false;
-          }
-        }
-        const viewportHeight = window.innerHeight;
-        const pageHeight = document.getElementById('app').offsetHeight;
-        if (Math.ceil(window.scrollY) === pageHeight - viewportHeight) {
-          this.loadNextPageData();
-        }
-      });
+      window.addEventListener('scroll', this.processWindowScroll);
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.processWindowScroll);
     }
   }
 </script>

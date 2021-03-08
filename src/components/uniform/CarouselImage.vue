@@ -79,8 +79,9 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
-    left: calc((100% - 40px) / 2);
+    left: 50%;
     bottom: 10px;
+    transform: translateX(-50%);
   }
 
   .dots > li {

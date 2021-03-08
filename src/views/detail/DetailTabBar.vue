@@ -62,7 +62,12 @@
   }
 
   #detail-tab-bar {
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    background-color: white;
   }
 
   .pink {

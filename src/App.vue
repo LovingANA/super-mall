@@ -7,9 +7,8 @@
 
 <script>
   import 'normalize.css'
-  import 'zbasic.css'
   import NavBar from '@/components/uniform/NavBar.vue'
-
+  
   export default {
     name: 'App',
     components: {
@@ -52,12 +51,14 @@
           }
         ]
       }
+    },
+    created() {
+      
     }
   }
 </script>
 
 <style>
-  :root {
-    --themeColor: #FF8E96;
-  }
+  @import './assets/css/basic.css';
+  @import './assets/css/app.css';
 </style>

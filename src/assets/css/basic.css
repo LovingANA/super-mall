@@ -1,0 +1,35 @@
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  /* 取消a元素点击后的阴影 */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+h1, h2, h3 {
+  display: inline-block;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+span {
+  display: inline-block;
+}
+
+/* thead, tfoot, tbody */
+table {
+  border-collapse: collapse;
+  text-align: center;
+}
+

@@ -10,11 +10,6 @@
         type: Object
       }
     },
-    data() {
-      return {
-
-      }
-    },
     methods: {
       toTop() {
         window.scrollTo({
