@@ -31,14 +31,12 @@
         type: Array
       },
       isShowLoading: {
-        type: Boolean
+        type: Boolean,
+        default() {
+          return false
+        }
       }
-    },
-    data() {
-      return {
-
-      }
-    },
+    }
   }
 </script>
 

@@ -3,7 +3,7 @@
     <ul class="images" :style="{transform: `translateX(${leftOffset}px)`}">
       <li v-for="carouselImage in carouselImages" :key="carouselImage.src">
         <a :href="carouselImage.href || ''">
-          <img :src="carouselImage.src" :alt="carouselImage.name" :style="{width: imageWidth + 'px', height: height}">
+          <img :src="carouselImage.src" :alt="carouselImage.name" :style="{width: imageWidth + 'px'}">
         </a>
       </li>
     </ul>
@@ -19,9 +19,6 @@
     props: {
       carouselImages: {
         type: Array
-      },
-      height: {
-        type: String
       }
     },
     data() {

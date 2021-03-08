@@ -30,7 +30,7 @@
     },
     data() {
       return {
-        title: '购物车',
+        title: '购物街',
         carouselImages: [],
         recommends: [],
         tabBarItems: [

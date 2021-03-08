@@ -8,7 +8,6 @@
     <router-link :to="returnHref">
       <img src="@/assets/images/back.png" alt="返回">
     </router-link>
-    
   </div>
 </template>
 
@@ -21,16 +20,14 @@
       },
       returnHref: {
         type: String
-      }
-    },
-    data() {
-      return {
-        currentPart: '商品'
-      }
+      },
+      currentPart: {
+        type: String
+      } 
     },
     methods: {
       changeCurrentPart(currentPart) {
-        this.currentPart = currentPart;
+        this.$emit('clickTabBar', currentPart);
       }
     }
   }
