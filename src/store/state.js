@@ -6,5 +6,6 @@ export default {
       viewportWidth: 0,
       viewportHeight: 0
     },
-  }
+  },
+  cartGoods: []
 }

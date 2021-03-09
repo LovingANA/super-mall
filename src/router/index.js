@@ -49,14 +49,19 @@ const routes = [
   },
   {
     path: '/detail',
-    component: AppDetatil
+    component: AppDetatil,
+    beforeEnter: (to, from, next) => {
+      next()
+      window.scrollTo(0, 0)
+    }
   }
 ]
-
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
 })
+
+export default router
 
 

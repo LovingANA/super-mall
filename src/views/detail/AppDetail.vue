@@ -13,6 +13,7 @@
     <div style="height:3px;background-color:lightgray;margin-top:10px;margin-bottom:18px;opacity:.4;"></div>
     <goods-list :goodsListItems="goodsListItems" style="padding-bottom:0" id="detail-goods-list"></goods-list>
     <back-to-top v-if="isShowBackToTop"></back-to-top>
+    <buy-goods @addCart="processAddCart"></buy-goods>
   </div>
 </template>
 
@@ -28,6 +29,7 @@
   import DetailComment from './DetailComment.vue'
   import GoodsList from '@/components/project/GoodsList.vue'
   import BackToTop from '@/components/uniform/BackToTop.vue'
+  import BuyGoods from './BuyGoods.vue'
 
   export default {
     name: 'AppDetail',
@@ -40,7 +42,8 @@
       GoodsParam,
       DetailComment,
       GoodsList,
-      BackToTop
+      BackToTop,
+      BuyGoods
     },
     data() {
       return {
@@ -87,10 +90,17 @@
       },
       processClickCTabBar(currentPart) {
         this.currentPart = currentPart
+      },
+      processAddCart() {
+        this.$store.commit('addGoodsToCart', {
+          image: this.carouselImages[0].src,
+          description: this.goodsBaseInfo.title,
+          price: this.goodsBaseInfo.currentPrice,
+          amount: 1
+        })
       }
     },
     created() {
-      window.scrollTo(0, 0);
       getDetailData(this.iid).then(res => {
         this.carouselImages = res.data.result.itemInfo.topImages.map(element => ({
           src: element
@@ -155,19 +165,9 @@
       })
       window.addEventListener('scroll', this.processWindowScroll)
     },
-    mounted () {
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.goodsParamTop = document.getElementById('goods-param').offsetTop
-          this.detailCommentTop = document.getElementById('detail-comment').offsetTop
-          this.detailGoodsListTop = document.getElementById('detail-goods-list').offsetTop
-        }, 3000)
-      })
-    },
     beforeDestroy() {
       window.removeEventListener('scroll', this.processWindowScroll)
-    },
-
+    }
   }
 </script>
 

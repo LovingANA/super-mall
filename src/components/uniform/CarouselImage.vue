@@ -15,7 +15,7 @@
 
 <script>
   export default {
-    name: 'CarouselImage',
+    name: 'CarouselImages',
     props: {
       carouselImages: {
         type: Array
@@ -25,12 +25,12 @@
       return {
         leftOffset: 0,
         currentImage: 0,
-        imageWidth: 0,
+        imageWidth: 0
       }
     },
     computed: {
       totoalImagesNumber() {
-        return this.carouselImages.length;
+        return this.carouselImages.length
       }
     },
     methods: {
