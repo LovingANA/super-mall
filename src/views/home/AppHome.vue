@@ -47,7 +47,7 @@
             href: '/home/selection'
           }
         ],
-        currentGoodsListType: 'pop',
+        currentGoodsListType: '',
         goodsListItems: [],
         requestedPage: 1,
         image: {
@@ -111,6 +111,13 @@
       }
     },
     created() {
+      if (this.$route.path.search('pop') !== -1) {
+        this.currentGoodsListType = 'pop'
+      } else if (this.$route.path.search('new') !== -1) {
+        this.currentGoodsListType = 'new'
+      } else {
+        this.currentGoodsListType = 'sell'
+      }
       getHomeData().then(res => {
         this.carouselImages = res.data.data.banner.list.map(element => ({
           src: element.image,
@@ -123,7 +130,7 @@
           href: element.link
         }))
       });
-      getHomeGoodsListData('pop', this.requestedPage).then(res => {
+      getHomeGoodsListData(this.currentGoodsListType, this.requestedPage).then(res => {
         this.goodsListItems = res.data.data.list.map(element => ({
           src: element.show.img,
           name: element.title,
